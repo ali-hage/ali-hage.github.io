@@ -1,0 +1,1 @@
+export { CompassComponent } from './compass';

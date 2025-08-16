@@ -1,0 +1,5 @@
+.hero-terminal { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+.tty-banner { margin: 0; white-space: pre-wrap; color: var(--ansi-cyan); }
+.hero-terminal__stats { display:flex; align-items:center; gap:12px; }
+.tty-btn { background: transparent; border: 1px dashed rgba(126,236,255,0.35); color: var(--ansi-green); padding: 2px 8px; border-radius: 6px; cursor: pointer; font: inherit; }
+.tty-btn:hover { color: var(--ansi-yellow); border-color: rgba(126,236,255,0.6); }

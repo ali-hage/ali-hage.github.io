@@ -1,0 +1,26 @@
+<section id="education" class="section-terminal">
+  <h2 class="section-terminal__title ansi-blue">[EDUCATION]</h2>
+  <div class="edu-log">
+    <div class="edu-item" *ngFor="let edu of education">
+      <div class="edu-header">
+        <span class="ansi-yellow" *ngIf="edu.period">{{ edu.period }}</span>
+      </div>
+      <div class="edu-degree">
+        <span class="ansi-green">{{ edu.degree }}</span>
+      </div>
+      <div class="edu-institution">
+        <span class="muted">{{ edu.institution }}</span>
+      </div>
+      <div class="edu-honors" *ngIf="edu.honors">
+        <span class="skill-chip">{{ edu.honors }}</span>
+      </div>
+      <div class="edu-coursework" *ngIf="edu.coursework && edu.coursework.length > 0">
+        <ul class="coursework-list">
+          <li *ngFor="let course of edu.coursework" class="coursework-item">
+            {{ course }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

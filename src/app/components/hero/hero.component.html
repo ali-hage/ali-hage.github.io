@@ -1,0 +1,27 @@
+<section id="hero" class="hero-terminal" role="banner">
+  <pre class="tty-banner">
+SHIP CONSOLE v0.7  |  BRIDGE
+------------------------------
+NAME: {{ personalInfo?.name }}
+ROLE: {{ personalInfo?.title }}
+PORT: {{ personalInfo?.location }}
+LINK: <a [href]="personalInfo?.linkedIn" target="_blank" rel="noopener noreferrer" class="ansi-blue">{{ personalInfo?.linkedIn }}</a>
+  </pre>
+
+  <p class="muted" style="margin:8px 0 12px; max-width: 72ch;">
+    {{ personalInfo?.description }}
+  </p>
+
+  <div class="hero-terminal__stats">
+    <span class="muted">LAT 44.1706°N • LON 28.6348°E • CONSTANȚA</span>
+  </div>
+
+  <div style="margin-top:12px;">
+    <span class="prompt">captain@leviathan</span>:<span class="path">~/bridge</span> <span class="symbol">$</span>
+    <button class="tty-btn" type="button" (click)="scrollToAbout()">cd ./about && open</button>
+    <span class="cursor">&nbsp;</span>
+  </div>
+</section>
+
+<!-- Mini pixel ship game appears above the footer, home only -->
+<app-ship-game></app-ship-game>

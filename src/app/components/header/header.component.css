@@ -1,0 +1,77 @@
+.tty-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: rgba(9,25,40,0.4);
+  border: 1px dashed rgba(126,236,255,0.25);
+}
+
+.tty-nav a {
+  color: var(--ansi-cyan);
+  text-decoration: none;
+  margin: 0 8px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+.tty-nav a:hover {
+  color: var(--ansi-yellow);
+  text-decoration: underline;
+}
+
+.tty-header__links a { color: var(--muted); text-decoration: none; }
+.tty-header__links a:hover { color: var(--ansi-white); text-decoration: underline; }
+
+.mobile-menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background: var(--text-primary);
+  margin: 3px 0;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    padding: 0 1rem;
+  }
+  
+  .mobile-menu-toggle {
+    display: flex;
+  }
+  
+  nav ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(15, 15, 35, 0.98);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid var(--border);
+    flex-direction: column;
+    padding: 2rem;
+    gap: 1rem;
+    transform: translateY(-20px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  nav.mobile-open ul {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  nav a {
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 12px;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+  }
+}

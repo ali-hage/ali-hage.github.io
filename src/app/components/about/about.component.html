@@ -1,0 +1,29 @@
+<section id="about" class="section-terminal">
+  <h2 class="section-terminal__title ansi-blue">[ABOUT]</h2>
+  <pre class="section-terminal__pre">
+NAME: {{ personalInfo?.name }}
+ROLE: {{ personalInfo?.title }}
+LOC:  {{ personalInfo?.location }}
+LINK: {{ personalInfo?.linkedIn }}
+  </pre>
+
+  <p class="muted" style="max-width:72ch;">
+    {{ personalInfo?.description }}
+  </p>
+
+  <div class="kv-grid">
+    <div class="kv"><span class="ansi-cyan">YEARS</span> <span class="ansi-yellow">5+</span></div>
+    <div class="kv"><span class="ansi-cyan">DEGREES</span> <span class="ansi-yellow">3</span></div>
+    <div class="kv"><span class="ansi-cyan">LANG</span> <span class="ansi-yellow">4</span></div>
+  </div>
+
+  <h3 class="section-terminal__title ansi-blue" style="margin-top:16px;">[CORE VALUES]</h3>
+  <ul class="tty-list">
+    <li *ngFor="let v of coreValues">
+      <span class="ansi-green">•</span> <strong>{{ v.title }}</strong> — <span class="muted">{{ v.description }}</span>
+    </li>
+  </ul>
+
+  <!-- Lighthouse component -->
+  <app-lighthouse></app-lighthouse>
+</section>

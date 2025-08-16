@@ -1,0 +1,21 @@
+<section id="skills" class="section-terminal">
+  <h2 class="section-terminal__title ansi-blue">[SKILLS]</h2>
+  <div class="skills-summary muted">Total skills: {{ getTotalSkillsCount() }}</div>
+
+  <!-- Interactive field wrapping content to host the ship overlay -->
+  <div class="skills-field" #fieldRef>
+    <!-- Ship overlay follows the mouse inside the field -->
+    <img #shipRef class="skills-ship" src="assets/ship.png" alt="ship" aria-hidden="true" />
+
+    <div class="skills-grid">
+      <div class="skills-cat" *ngFor="let category of skills">
+        <div class="skills-header">
+          <span class="ansi-green">{{ category.label }}</span>
+        </div>
+        <div class="skills-list">
+          <span class="skill-chip" *ngFor="let s of category.skills">{{ s }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

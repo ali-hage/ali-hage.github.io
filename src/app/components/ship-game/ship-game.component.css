@@ -1,0 +1,6 @@
+.ship-game { margin: 20px 0 8px; }
+.ship-game__header { display:flex; align-items:center; gap:12px; margin-bottom:8px; }
+.ship-game__title { color: var(--ansi-cyan); font-weight: 600; letter-spacing: 0.5px; }
+.ship-game__wrap { border: 1px dashed rgba(126,236,255,0.35); border-radius: 8px; padding: 6px; background: radial-gradient(120px 60px at 50% 30%, rgba(11,73,112,0.45), rgba(6,37,58,0.7)); box-shadow: inset 0 0 0 1px rgba(126,236,255,0.12); }
+.ship-game__canvas { width: 100%; max-width: 640px; height: auto; display:block; image-rendering: pixelated; margin: 0 auto; }
+.ship-game__hint { color: var(--ansi-green); margin: 6px 0 0; text-align: center; font-size: 0.9rem; opacity: 0.9; }

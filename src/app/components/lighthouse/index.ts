@@ -1,0 +1,1 @@
+export { LighthouseComponent } from './lighthouse';

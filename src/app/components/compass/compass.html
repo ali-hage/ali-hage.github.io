@@ -1,0 +1,24 @@
+<div class="compass-container">
+  <div class="compass" #compassElement>
+    <!-- Compass outer ring -->
+    <div class="compass-ring"></div>
+    
+    <!-- Compass face -->
+    <div class="compass-face">
+      <!-- Direction markers -->
+      <div class="direction-marker north">N</div>
+      <div class="direction-marker east">E</div>
+      <div class="direction-marker south">S</div>
+      <div class="direction-marker west">W</div>
+      
+      <!-- Center dot -->
+      <div class="compass-center"></div>
+      
+      <!-- Needle -->
+      <div class="compass-needle" [style.transform]="'rotate(' + needleAngle + 'deg)'">
+        <div class="needle-north"></div>
+        <div class="needle-south"></div>
+      </div>
+    </div>
+  </div>
+</div>

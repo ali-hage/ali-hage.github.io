@@ -1,0 +1,18 @@
+<section id="experience" class="section-terminal">
+  <h2 class="section-terminal__title ansi-blue">[EXPERIENCE]</h2>
+  <div class="exp-log">
+    <div class="exp-item" *ngFor="let exp of experiences">
+      <div class="exp-header">
+        <span class="ansi-green">{{ exp.title }}</span> @ <span class="ansi-cyan">{{ exp.company }}</span>
+        <span class="muted" style="margin-left:auto;">{{ exp.period }} {{ exp.current ? '• ACTIVE' : '' }}</span>
+      </div>
+      <p class="muted" style="margin:4px 0 6px;">{{ exp.description }}</p>
+      <div class="exp-skills" *ngIf="exp.skills?.length">
+        <span class="skill-chip" *ngFor="let s of exp.skills">{{ s }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Compass component centered above footer -->
+  <app-compass></app-compass>
+</section>
