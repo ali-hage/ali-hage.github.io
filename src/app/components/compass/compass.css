@@ -147,6 +147,7 @@
   image-rendering: crisp-edges;
 }
 
+
 /* Responsive scaling */
 @media (max-width: 768px) {
   .compass {

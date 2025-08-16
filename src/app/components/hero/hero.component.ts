@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { ShipGameComponent } from '../ship-game/ship-game.component';
 import { PortfolioDataService } from '../../core/services/portfolio-data.service';
 import { PersonalInfo } from '../../core/models';
@@ -14,6 +15,7 @@ import { PersonalInfo } from '../../core/models';
 })
 export class HeroComponent implements OnInit {
   private portfolioService = inject(PortfolioDataService);
+  private router = inject(Router);
   
   personalInfo: PersonalInfo | null = null;
 
@@ -24,10 +26,7 @@ export class HeroComponent implements OnInit {
   }
 
 
-  scrollToAbout(): void {
-    const aboutSection = document.getElementById('about');
-    if (aboutSection) {
-      aboutSection.scrollIntoView({ behavior: 'smooth' });
-    }
+  navigateToAbout(): void {
+    this.router.navigate(['/about']);
   }
 }

@@ -35,6 +35,11 @@ export interface SkillCategory {
   icon?: string;
 }
 
+export interface CertificationCategory {
+  category: string;
+  certifications: string[];
+}
+
 
 export interface SocialLink {
   label: string;
@@ -54,6 +59,7 @@ export interface PortfolioData {
   experience: Experience[];
   education: Education[];
   skills: SkillCategory[];
+  certifications: CertificationCategory[];
   socialLinks: SocialLink[];
   navigation: NavigationItem[];
 }

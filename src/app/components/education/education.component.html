@@ -1,7 +1,21 @@
-<section id="education" class="section-terminal">
+<section id="education" class="section-terminal education-section" #educationSection>
   <h2 class="section-terminal__title ansi-blue">[EDUCATION]</h2>
+  
+  <!-- Oil Rig Platform -->
+  <div class="oil-rig-container" #rigPlatform>
+    <img src="assets/oil platform.png" alt="Oil Rig Platform" class="oil-rig-platform" />
+    
+    
+    <!-- Animated Crane Cable -->
+    <div class="crane-cable-overlay">
+      <div class="crane-cable"></div>
+      <div class="crane-hook"></div>
+    </div>
+  </div>
+  
   <div class="edu-log">
-    <div class="edu-item" *ngFor="let edu of education">
+    <div class="edu-item" *ngFor="let edu of education; let i = index">
+      <div class="edu-cable" [style.animation-delay.s]="i * 0.1"></div>
       <div class="edu-header">
         <span class="ansi-yellow" *ngIf="edu.period">{{ edu.period }}</span>
       </div>

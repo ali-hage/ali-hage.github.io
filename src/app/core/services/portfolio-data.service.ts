@@ -59,6 +59,13 @@ export class PortfolioDataService {
   }
 
   /**
+   * Get certifications
+   */
+  getCertifications() {
+    return of(this.portfolioData.certifications);
+  }
+
+  /**
    * Get social links
    */
   getSocialLinks() {

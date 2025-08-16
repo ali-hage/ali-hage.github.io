@@ -27,6 +27,11 @@ export const routes: Routes = [
     title: 'Skills - Ali Hage Hassan'
   },
   {
+    path: 'certifications',
+    loadComponent: () => import('./components/certifications/certifications.component').then(m => m.CertificationsComponent),
+    title: 'Certifications - Ali Hage Hassan'
+  },
+  {
     path: '**',
     redirectTo: ''
   }

@@ -4,7 +4,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
   personalInfo: {
     name: 'Ali Hage Hassan',
     title: 'Maritime Engineer',
-    description: 'Navigating the intersection of maritime tradition and modern technology with 5+ years of experience in vessel operations, port coordination, and offshore engineering.',
+    description: 'Bridging maritime expertise with modern innovation through comprehensive vessel operations, advanced offshore systems, and strategic port coordination across diverse international waters.',
     location: 'Constanta, Romania',
     linkedIn: 'https://linkedin.com/in/ali-hage-hassan-609554232'
   },
@@ -52,7 +52,16 @@ export const PORTFOLIO_DATA: PortfolioData = {
       period: '2020',
       description: 'Comprehensive hands-on experience in vessel operations, advanced navigation systems, and cargo handling procedures. Worked directly with senior officers on bridge operations and ship management.',
       skills: ['ECDIS', 'RADAR', 'Navigation', 'Cargo Operations', 'Bridge Operations']
+    },
+    {
+      title: 'Deck Cadet Officer',
+      company: 'Spania Trading Ltd',
+      period: '2019',
+      description:  'hands-on experience on board a general cargo vessel.',
+      skills: ['Cargo operation supervisor', 'Tank sounding', 'Draft readings']
     }
+
+    
   ],
   education: [
     {
@@ -119,6 +128,57 @@ export const PORTFOLIO_DATA: PortfolioData = {
       icon: 'language'
     }
   ],
+  certifications: [
+    {
+      category: 'Maritime Basic Training',
+      certifications: [
+        'Personal survival techniques',
+        'Personal safety and social responsibilities in board ships',
+        'Basic fire fighting',
+        'Elementary first aid'
+      ]
+    },
+    {
+      category: 'Maritime Security & Specialized Training',
+      certifications: [
+        'Certificate of Proficiency in security awareness training and security training for seafarers with designated security duties',
+        'Basic training for oil and chemical tanker cargo operation',
+        'Basic training for liquefied gas tanker cargo operation'
+      ]
+    },
+    {
+      category: 'Python Programming Certifications',
+      certifications: [
+        'Python 3 Programming',
+        'Python Basics',
+        'Python Project: pillow, tesseract, and opencv',
+        'Python Classes and Inheritance',
+        'Python Functions, Files, and Dictionaries',
+        'Data Collection and Processing with Python'
+      ]
+    },
+    {
+      category: 'Google IT Automation with Python Certification',
+      certifications: [
+        'Introduction to Git and GitHub',
+        'Crash Course on Python',
+        'Using Python to Interact with the Operating System',
+        'Configuration Management and the Cloud',
+        'Automating Real-World Tasks with Python',
+        'Troubleshooting and Debugging Techniques'
+      ]
+    },
+    {
+      category: 'Diverse Certifications',
+      certifications: [
+        'Negotiation Fundamentals',
+        'Introduction to Data Science in Python',
+        'Machine Learning for All',
+        'Applied Machine Learning in Python',
+        'Applied Plotting, Charting & Data Representation in Python'
+      ]
+    }
+  ],
   socialLinks: [
     {
       label: 'LinkedIn',
@@ -136,6 +196,11 @@ export const PORTFOLIO_DATA: PortfolioData = {
       label: 'About',
       route: '/about',
       icon: 'person'
+    },
+    {
+      label: 'Certifications',
+      route: '/certifications',
+      icon: 'certificate'
     }
   ]
 };

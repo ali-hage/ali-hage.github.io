@@ -23,6 +23,8 @@ export class SkillsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private ship = { x: 0, y: 0, tx: 0, ty: 0, vx: 0, vy: 0, a: 0, ta: 0 };
   private fieldRect?: DOMRect;
+  private mouseX = 0;
+  private mouseY = 0;
 
   private bodies: Array<{ el: HTMLElement; baseX: number; baseY: number; ox: number; oy: number; vx: number; vy: number; w: number; h: number; }> = [];
   private lastTime = 0;
@@ -78,6 +80,11 @@ export class SkillsComponent implements OnInit, AfterViewInit, OnDestroy {
     this.ship.y = (this.fieldRect.height || 0) * 0.3;
     this.ship.tx = this.ship.x;
     this.ship.ty = this.ship.y;
+    
+    // Initialize mouse position
+    this.mouseX = this.ship.x;
+    this.mouseY = this.ship.y;
+    
     this.positionShip();
 
     if (!this.running) this.start();
@@ -85,11 +92,8 @@ export class SkillsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private handlePointerMove = (e: PointerEvent) => {
     if (!this.fieldRect) return;
-    const x = e.clientX - this.fieldRect.left;
-    const y = e.clientY - this.fieldRect.top;
-    // Clamp inside field
-    this.ship.tx = Math.max(0, Math.min(this.fieldRect.width, x));
-    this.ship.ty = Math.max(0, Math.min(this.fieldRect.height, y));
+    this.mouseX = e.clientX - this.fieldRect.left;
+    this.mouseY = e.clientY - this.fieldRect.top;
   };
 
   private handleResize = () => {
@@ -123,31 +127,55 @@ export class SkillsComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.rafId) cancelAnimationFrame(this.rafId);
   }
 
+
   private positionShip() {
     const shipEl = this.shipRef?.nativeElement;
     if (!shipEl) return;
+    
+    // Convert angle to degrees and adjust for ship orientation
+    // Assuming ship image has bow pointing right (0°) and fume at the back
+    // Add 90° offset so fume points up when ship rotates
     const deg = (this.ship.a * 180) / Math.PI;
+    
     // Subtle vertical bobbing based on time
     const bob = Math.sin(this.t * 2.2) * 2; // +/- 2px
     shipEl.style.transform = `translate(-50%, -50%) translate(${this.ship.x}px, ${this.ship.y + bob}px) rotate(${deg.toFixed(2)}deg)`;
   }
 
   private update(dt: number) {
-    // Smoothly chase the mouse target
-    const follow = 0.22; // higher = more eager chasING
-    this.ship.vx += (this.ship.tx - this.ship.x) * follow;
-    this.ship.vy += (this.ship.ty - this.ship.y) * follow;
-    this.ship.vx *= 0.75; // damping
-    this.ship.vy *= 0.75;
-    this.ship.x += this.ship.vx * dt * 60;
-    this.ship.y += this.ship.vy * dt * 60;
-
-    // Always face the mouse target (chasing)
-    this.ship.ta = Math.atan2(this.ship.ty - this.ship.y, this.ship.tx - this.ship.x);
-    // Shortest angular difference
-    let da = this.ship.ta - this.ship.a;
-    da = Math.atan2(Math.sin(da), Math.cos(da));
-    this.ship.a += da * 0.25; // turn rate smoothing
+    // Calculate direction from mouse to ship
+    const dx = this.mouseX - this.ship.x;
+    const dy = this.mouseY - this.ship.y;
+    const distance = Math.hypot(dx, dy);
+    
+    if (distance > 0) {
+      // Calculate target position: 80px away from mouse, opposite direction
+      const targetDistance = 80;
+      const normalizedX = dx / distance;
+      const normalizedY = dy / distance;
+      
+      this.ship.tx = this.mouseX - normalizedX * targetDistance;
+      this.ship.ty = this.mouseY - normalizedY * targetDistance;
+      
+      // Smooth movement to target
+      const follow = 0.15;
+      this.ship.vx += (this.ship.tx - this.ship.x) * follow;
+      this.ship.vy += (this.ship.ty - this.ship.y) * follow;
+      this.ship.vx *= 0.8; // damping
+      this.ship.vy *= 0.8;
+      
+      this.ship.x += this.ship.vx * dt * 60;
+      this.ship.y += this.ship.vy * dt * 60;
+      
+      // Ship bow points to mouse (0 degrees = right, rotate to point towards mouse)
+      this.ship.ta = Math.atan2(dy, dx);
+      
+      // Smooth rotation
+      let da = this.ship.ta - this.ship.a;
+      da = Math.atan2(Math.sin(da), Math.cos(da)); // shortest angle
+      this.ship.a += da * 0.3;
+    }
+    
     this.t += dt; // advance time for bobbing
     this.positionShip();
 
@@ -155,6 +183,7 @@ export class SkillsComponent implements OnInit, AfterViewInit, OnDestroy {
     const R = 120;           // influence radius
     const push = 0.9;        // push strength
     const damping = 0.92;    // velocity damping (drift to a stop)
+    const returnForce = 0.03; // force to return to original position
 
     for (const b of this.bodies) {
       const px = b.baseX + b.ox;
@@ -175,6 +204,10 @@ export class SkillsComponent implements OnInit, AfterViewInit, OnDestroy {
         b.vx += dx * f;
         b.vy += dy * f;
       }
+
+      // Return to original position force
+      b.vx -= b.ox * returnForce;
+      b.vy -= b.oy * returnForce;
 
       // Damping and integrate
       b.vx *= damping;

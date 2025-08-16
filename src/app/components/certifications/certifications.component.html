@@ -1,0 +1,24 @@
+<section id="certifications" class="section-terminal certifications-section">
+  <h2 class="section-terminal__title ansi-blue">[COURSES AND CERTIFICATIONS]</h2>
+  
+  <!-- Matrix effect on the left side -->
+  <div class="matrix-container" #matrixRef>
+    <canvas class="matrix-canvas" #matrixCanvas></canvas>
+  </div>
+  
+  <div class="cert-log">
+    <div class="cert-category" *ngFor="let category of certifications; let i = index">
+      <div class="cert-cable" [style.animation-delay.s]="i * 0.1"></div>
+      <div class="cert-header">
+        <h3 class="ansi-green">{{ category.category }}</h3>
+      </div>
+      <div class="cert-list">
+        <ul class="certification-list">
+          <li *ngFor="let cert of category.certifications" class="certification-item">
+            {{ cert }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

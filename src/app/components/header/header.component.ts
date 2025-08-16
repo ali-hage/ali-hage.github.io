@@ -16,20 +16,11 @@ export class HeaderComponent implements OnInit {
   private portfolioService = inject(PortfolioDataService);
   
   navigation: NavigationItem[] = [];
-  isMenuOpen = false;
 
   ngOnInit(): void {
     this.portfolioService.getNavigation().subscribe(nav => {
       this.navigation = nav;
     });
-  }
-
-  toggleMenu(): void {
-    this.isMenuOpen = !this.isMenuOpen;
-  }
-
-  closeMenu(): void {
-    this.isMenuOpen = false;
   }
 
 }
