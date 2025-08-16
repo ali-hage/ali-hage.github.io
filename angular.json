@@ -42,7 +42,9 @@
                   "maximumError": "100kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "baseHref": "/",
+              "outputPath": "dist"
             },
             "development": {
               "optimization": false,

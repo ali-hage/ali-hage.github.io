@@ -5,6 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:prod": "ng build --configuration production",
+    "build:github": "ng build --configuration production && echo 'ali-hage.github.io' > dist/CNAME",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
